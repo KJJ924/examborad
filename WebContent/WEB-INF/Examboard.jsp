@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/bootstrap.css"> 
 </head>
@@ -11,22 +11,22 @@
 
 	<table class="table table-bordered table-hover" >
 	<thead>
-			<th>ÀÛ¼ºÀÚ</th>
-			<th>Á¦¸ñ</th>
-			<th>³¯Â¥</th>
-			<th>Á¶È¸¼ö</th>	
+			<th>ìž‘ì„±ìž</th>
+			<th>ì œëª©</th>
+			<th>ë‚ ì§œ</th>
+			<th>ì¡°íšŒìˆ˜</th>	
 	</thead>
 	<tbody>
 		<tr>
-				<td>±èÀçÁØ</td>
-				<td><a href="detail?id=?" >°Ô½ÃÆÇ¸¸µé±â</a></td>
+				<td>ë³€ê²½</td>
+				<td><a href="detail?id=?" >ê²Œì‹œíŒë§Œë“¤ê¸°</a></td>
 				<td>200-1-1-1</td>
 				<td>1</td>
 		</tr>
 	</tbody>			
 	</table>
 	<hr>
-	<a class="btn btn-default pull-right" >±Û¾²±â</a>
+	<a class="btn btn-default pull-right" >ê¸€ì“°ê¸°</a>
 	
 	<script src="js/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>

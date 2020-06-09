@@ -1,22 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/bootstrap.css"> 
 </head>
 <body>
 <div class="container">
       <form class="form-signin">
-        <h2 class="form-signin-heading">·Î±×ÀÎÇÏ¼¼¿ä</h2>
-        <input type="text" class="input-block-level" placeholder="ÀÌ¸ŞÀÏ ÁÖ¼Ò">
-        <input type="password" class="input-block-level" placeholder="¾ÏÈ£">
+        <h2 class="form-signin-heading">ë¡œê·¸ì¸í•˜ì„¸ìš”</h2>
+        <input type="text" class="input-block-level" placeholder="ì´ë©”ì¼ ì£¼ì†Œ">
+        <input type="password" class="input-block-level" placeholder="ì•”í˜¸">
         <label class="checkbox">
-          <input type="checkbox" value="remember-me"> ·Î±×ÀÎ À¯Áö
+          <input type="checkbox" value="remember-me"> ë¡œê·¸ì¸ ìœ ì§€
         </label>
-        <button class="btn btn-large btn-primary" type="submit">·Î±×ÀÎ</button>
+        <button class="btn btn-large btn-primary" type="submit">ë¡œê·¸ì¸</button>
       </form>
 
     </div> <!-- /container -->
