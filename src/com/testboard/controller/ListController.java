@@ -47,17 +47,26 @@ public class ListController extends HttpServlet {
 	protected void doAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 					IAction action = null;
 					ActionForward forward =null;
+					String path=null;
 					String uri =request.getRequestURI();
 					String conPath= request.getContextPath();
 					String strAction=uri.substring(conPath.length());
-					System.out.println(strAction);
+				
 					TestBoardCommand command = TestBoardCommand.getInstanse();
 					
 					action = command.getAction(strAction);
 					
+					if(!strAction.equals("/insert.do")) {
 					forward= action.execute(request, response);
-					RequestDispatcher rd = request.getRequestDispatcher(forward.getPath());
+					path=forward.getPath();
+					}else {
+						path="/WEB-INF/InsertBoard.jsp";
+					}
+					
+					
+					RequestDispatcher rd = request.getRequestDispatcher(path);
 					rd.forward(request, response);
+					
 					
 	}
 }

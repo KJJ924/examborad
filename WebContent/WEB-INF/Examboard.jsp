@@ -31,7 +31,7 @@
 	</tbody>			
 	</table>
 	<hr>
-	<a class="btn btn-default pull-right" >글쓰기</a>
+	<a class="btn btn-default pull-right"  href="insert.do">글쓰기</a>
 	
 	<script src="js/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
