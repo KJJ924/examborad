@@ -17,6 +17,14 @@ public class ExamBoardDto {
 	
 	
 
+	@Override
+	public String toString() {
+		return "ExamBoardDto [id=" + id + ", title=" + title + ", date=" + date + ", hit=" + hit + ", content="
+				+ content + ", name=" + name + "]";
+	}
+
+
+
 	public ExamBoardDto(int id, String title, Timestamp date, String hit, String content,String name) {
 		this.id = id;
 		this.title = title;

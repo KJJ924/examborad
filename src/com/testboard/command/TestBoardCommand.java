@@ -1,6 +1,7 @@
 package com.testboard.command;
 
 import com.testboard.action.IAction;
+import com.testboard.action.ShowDetailBorad;
 import com.testboard.action.ShowlistBoard;
 
 public class TestBoardCommand {
@@ -20,8 +21,8 @@ public IAction getAction(String strAction) {
 	case "/board.do": 
 		action= new ShowlistBoard();
 		break;
-	case "/boa2rd.do": 
-		action= null;
+	case "/detail.do": 
+		action= new ShowDetailBorad();
 		break;	
 	}
 	return action;

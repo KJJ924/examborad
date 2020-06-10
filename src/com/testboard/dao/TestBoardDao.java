@@ -68,4 +68,41 @@ public class TestBoardDao {
 		return list;
 		
 	}
+
+	public ExamBoardDto getDetail(int pid) {
+		ExamBoardDto dto= null;
+		String sql = "select *from member where id=?";
+		try {
+			 psmt = conn.prepareStatement(sql);
+			 psmt.setInt(1, pid);
+			 rs= psmt.executeQuery();
+			
+			
+			if(rs.next()) {
+				int id = rs.getInt("id");
+				String title =rs.getString("title");
+				Timestamp date = rs.getTimestamp("day");
+				String hit =rs.getString("hit");
+				String content =rs.getString("content");
+				String name =rs.getString("name");
+				 dto = new ExamBoardDto(id, title, date, hit, content, name);
+				 System.out.println(dto);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				rs.close();
+				psmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		return dto;
+	}
 }
