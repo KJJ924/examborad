@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,12 +18,14 @@
 			<th>조회수</th>	
 	</thead>
 	<tbody>
+	<c:forEach var="n" items="${list}">
 		<tr>
-				<td>변경</td>
-				<td><a href="detail?id=?" >게시판만들기</a></td>
-				<td>200-1-1-1</td>
-				<td>1</td>
+				<td>${n.id}</td>
+				<td><a href="detail?id=?" >${n.title}</a></td>
+				<td>${n.date}</td>
+				<td>${n.hit}</td>
 		</tr>
+	</c:forEach>
 	</tbody>			
 	</table>
 	<hr>
