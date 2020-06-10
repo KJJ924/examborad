@@ -39,12 +39,13 @@ public class TestBoardDao {
 				rs=smt.executeQuery(sql);
 				
 				while(rs.next()) {
-					String id = rs.getString("id");
+					int id = rs.getInt("id");
 					String title =rs.getString("title");
 					Timestamp date = rs.getTimestamp("day");
 					String hit =rs.getString("hit");
 					String content =rs.getString("content");
-					ExamBoardDto dto = new ExamBoardDto(id, title, date, hit, content);
+					String name =rs.getString("name");
+					ExamBoardDto dto = new ExamBoardDto(id, title, date, hit, content, name);
 					list.add(dto);
 				}
 				

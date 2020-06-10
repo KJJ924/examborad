@@ -12,8 +12,9 @@
 
 	<table class="table table-bordered table-hover" >
 	<thead>
-			<th>작성자</th>
+			<th>번호</th>
 			<th>제목</th>
+			<th>작성자</th>
 			<th>날짜</th>
 			<th>조회수</th>	
 	</thead>
@@ -21,7 +22,8 @@
 	<c:forEach var="n" items="${list}">
 		<tr>
 				<td>${n.id}</td>
-				<td><a href="detail?id=?" >${n.title}</a></td>
+				<td><a href="detail.do?id=${n.id}">${n.title}</a></td>
+				<td>${n.name}</td>
 				<td>${n.date}</td>
 				<td>${n.hit}</td>
 		</tr>
