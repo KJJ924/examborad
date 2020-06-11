@@ -32,7 +32,7 @@ public class TestBoardDao {
 	
 	public List<ExamBoardDto> getlist(){
 		List<ExamBoardDto> list = new ArrayList<ExamBoardDto>();
-		String sql = "select*from member";
+		String sql = "select *From member ORDER by day DESC";
 		
 			try {
 				smt=conn.createStatement();
@@ -104,5 +104,33 @@ public class TestBoardDao {
 			
 		}
 		return dto;
+	}
+
+	public void setInsert(String name, String title, String content) {
+		              //insert into member VALUES(BOARDID.NEXTVAL,'제목',sysdate,0,'내용','이름');
+		String sql = "insert into member VALUES(BOARDID.NEXTVAL,?,sysdate,0,?,?)";
+		try {
+			 psmt = conn.prepareStatement(sql);
+			 psmt.setString(1, title);
+			 psmt.setString(2,content);
+			 psmt.setString(3, name);
+			 psmt.executeQuery();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				
+				psmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
 	}
 }

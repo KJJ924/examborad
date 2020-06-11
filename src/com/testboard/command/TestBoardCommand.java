@@ -3,6 +3,7 @@ package com.testboard.command;
 import com.testboard.action.IAction;
 import com.testboard.action.ShowDetailBorad;
 import com.testboard.action.ShowlistBoard;
+import com.testboard.action.WriteBorad;
 
 public class TestBoardCommand {
  private static TestBoardCommand instanse=null;
@@ -24,6 +25,9 @@ public IAction getAction(String strAction) {
 	case "/detail.do": 
 		action= new ShowDetailBorad();
 		break;	
+	case "/write.do": 
+		action= new WriteBorad();
+		break;
 	}
 	return action;
  

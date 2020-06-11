@@ -8,7 +8,34 @@
 <title>Insert title here</title>
 </head>
 <body>
-안뇽
+		<table class="table table table-bordered ">
+          	<form action="write.do" method="post">
+                        <tr>
+                         <th>제목</th>
+                           <td class="text-align-left text-indent text-strong text-orange" colspan="3">
+                           	
+                           	<input type="text" name="title">
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>작성자</th>
+                           <td><input type="text" name="name"></td>
+                        </tr>
+              
+                        <tr>
+                        	<th>내용</th>
+                           <td colspan="4"><textarea name ="content" rows="10"></textarea></td>
+                        </tr>
+                       
+                     	<tr>
+                     		<th colspan="2">
+                        <input class="pull-right" type="reset" value="reset">
+                        &nbsp;&nbsp;
+                        <input class="pull-right" type="submit" value="작성">
+							</th>                        
+                        </tr>
+              </form>
+                  </table>
 
 <script src="js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
