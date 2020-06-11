@@ -169,4 +169,29 @@ public class TestBoardDao {
 		}
 		
 	}
+
+	public void modifyData(String title, String content, int pid) {
+		
+		String sql = "update member set title=?,content=? where id=?";
+		try {
+			 psmt = conn.prepareStatement(sql);
+			 psmt.setString(1, title);
+			 psmt.setString(2, content);
+			 psmt.setInt(3, pid);
+			 psmt.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				
+				psmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+	}
+ }
 }
