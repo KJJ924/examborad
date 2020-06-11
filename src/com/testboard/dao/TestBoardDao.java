@@ -70,6 +70,7 @@ public class TestBoardDao {
 	}
 
 	public ExamBoardDto getDetail(int pid) {
+		uphit(pid);
 		ExamBoardDto dto= null;
 		String sql = "select *from member where id=?";
 		try {
@@ -86,7 +87,6 @@ public class TestBoardDao {
 				String content =rs.getString("content");
 				String name =rs.getString("name");
 				 dto = new ExamBoardDto(id, title, date, hit, content, name);
-				 System.out.println(dto);
 			}
 			
 		} catch (SQLException e) {
@@ -106,6 +106,19 @@ public class TestBoardDao {
 		return dto;
 	}
 
+	private void uphit(int pid) {
+		String sql = "update member set hit=hit+1 where id=?";
+		try {
+			 psmt = conn.prepareStatement(sql);
+			 psmt.setInt(1, pid);
+			 psmt.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 	public void setInsert(String name, String title, String content) {
 		              //insert into member VALUES(BOARDID.NEXTVAL,'제목',sysdate,0,'내용','이름');
 		String sql = "insert into member VALUES(BOARDID.NEXTVAL,?,sysdate,0,?,?)";
@@ -117,6 +130,29 @@ public class TestBoardDao {
 			 psmt.executeQuery();
 			
 			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				
+				psmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+	}
+
+	public void Delete(int pid) {
+		String sql = "DELETE member where id=?";
+		try {
+			 psmt = conn.prepareStatement(sql);
+			 psmt.setInt(1, pid);
+			 psmt.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

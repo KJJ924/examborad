@@ -36,9 +36,11 @@
                         </tr>
                      </tbody>
                   </table>
-                  <div>
-                  		<a class="btn btn-default pull-right" href="board.do">목록</a>
+                  <div class="text-center">
+                  		<a class="btn btn-default " href="board.do">목록</a>
+                  		<a class="btn btn-default pull-right " href="delete.do?id=${dto.id}">삭제</a>
                   </div>
+                  
     <script src="js/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
 </body>

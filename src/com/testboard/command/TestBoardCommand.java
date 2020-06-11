@@ -1,5 +1,6 @@
 package com.testboard.command;
 
+import com.testboard.action.DeleteData;
 import com.testboard.action.IAction;
 import com.testboard.action.ShowDetailBorad;
 import com.testboard.action.ShowlistBoard;
@@ -28,6 +29,10 @@ public IAction getAction(String strAction) {
 	case "/write.do": 
 		action= new WriteBorad();
 		break;
+	case "/delete.do": 
+		action= new DeleteData();
+		break;
+		
 	}
 	return action;
  

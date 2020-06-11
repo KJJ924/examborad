@@ -51,7 +51,7 @@ public class ListController extends HttpServlet {
 					String uri =request.getRequestURI();
 					String conPath= request.getContextPath();
 					String strAction=uri.substring(conPath.length());
-				
+				System.out.println(strAction);
 					TestBoardCommand command = TestBoardCommand.getInstanse();
 					
 					action = command.getAction(strAction);
