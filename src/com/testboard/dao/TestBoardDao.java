@@ -12,6 +12,7 @@ import java.util.List;
 
 import com.testboard.connection.DbConnection;
 import com.testboard.entity.ExamBoardDto;
+import com.testboard.entity.SingUpDto;
 
 public class TestBoardDao {
 	private Connection conn;
@@ -194,4 +195,46 @@ public class TestBoardDao {
 		
 	}
  }
+
+	public int login(String userId, String userPw) {
+		int check = 0;
+		String id = null;
+		String pw = null;
+		String sql = "select *from userInfo where id =?";
+		try {
+			 psmt = conn.prepareStatement(sql);
+			 psmt.setString(1, userId);
+			 rs = psmt.executeQuery();
+			 if(rs.next()) {
+				  id =rs.getString("id");
+				  pw =rs.getString("pw");
+			 }
+			 if(id.equals(userId) && pw.equals(userPw)) {
+				 check=1;
+			 }else
+				 check=0;
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+		
+		
+		return check;
+	}
+
+	public void insertUserInfo(String userId, String userPw) {
+			String sql = "insert into userinfo values(?,?)";
+			try {
+				 psmt = conn.prepareStatement(sql);
+				 psmt.setString(1, userId);
+				 psmt.setString(2, userPw);
+				 psmt.executeQuery();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+	}
 }

@@ -6,6 +6,8 @@ import com.testboard.action.ModifyData;
 import com.testboard.action.ShowDetailBorad;
 import com.testboard.action.ShowlistBoard;
 import com.testboard.action.WriteBorad;
+import com.testboard.action.login;
+import com.testboard.action.singup;
 
 public class TestBoardCommand {
  private static TestBoardCommand instanse=null;
@@ -35,6 +37,12 @@ public IAction getAction(String strAction) {
 		break;
 	case "/modify.do": 
 		action= new ModifyData();
+		break;
+	case "/singup.do": 
+		action= new singup();
+		break;
+	case "/login.do": 
+		action= new login();
 		break;
 		
 	}

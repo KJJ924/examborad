@@ -9,6 +9,9 @@
 <link rel="stylesheet" href="css/bootstrap.css"> 
 </head>
 <body>
+	<nav>
+		<a class="btn btn-default pull-right"  href="login.jsp">로그인</a>
+	</nav>
 
 	<table class="table table-bordered table-hover" >
 	<thead>

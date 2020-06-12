@@ -31,7 +31,8 @@
                      		<th colspan="2">
                         <input class="pull-right" type="reset" value="reset">
                         &nbsp;&nbsp;
-                        <input class="pull-right" type="submit" value="작성">
+                        <input class="pull-right" type="submit" value="작성"><br>
+                        <a class="btn btn-default " href="board.do">목록</a>
 							</th>                        
                         </tr>
               </form>
