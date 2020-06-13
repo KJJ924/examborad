@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,10 +18,17 @@
                            	<input type="text" name="title">
                            </td>
                         </tr>
-                        <tr>
-                           <th>작성자</th>
-                           <td><input type="text" name="name"></td>
-                        </tr>
+                      	
+	
+		<c:if test="${UserID==null || UserID==''}">
+		  <tr>
+			 <th>작성자</th>
+               <td><input type="text" name="name"></td>
+          </tr>
+		</c:if>
+		
+                          
+                        
               
                         <tr>
                         	<th>내용</th>

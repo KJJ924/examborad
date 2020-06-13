@@ -10,7 +10,14 @@
 </head>
 <body>
 	<nav>
+		<c:choose>
+		<c:when test="${UserID!=null}">
+		<a class="btn btn-default pull-right"  href="logout.jsp">로그아웃</a>
+		</c:when>
+		<c:when test="${UserID==null || UserID==''}">
 		<a class="btn btn-default pull-right"  href="login.jsp">로그인</a>
+		</c:when>
+		</c:choose>
 	</nav>
 
 	<table class="table table-bordered table-hover" >

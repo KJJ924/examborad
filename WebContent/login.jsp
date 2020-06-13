@@ -21,17 +21,16 @@
 		
 
       <form class="form-signin" action="login.do" method="post">
-      <tr>
       <th>아이디</th>
        <td><input type="text" class="input-block-level" placeholder="아이디입력" value="${UserID}" name="userId">
         </td>
-        </tr>
-        <tr>
+        
+        
         <th>비밀번호</th>
         <td>
         <input type="password" class="input-block-level" placeholder="암호" name="userPw">
         	</td>
-        </tr>
+        
       
         <button class="btn btn-large btn-primary" type="submit">로그인</button>
         <a class="btn btn-large btn-primary"  href="signUpPage.jsp">회원가입</a>

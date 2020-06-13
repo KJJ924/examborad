@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.testboard.connection.DbConnection;
+import com.testboard.entity.CommentDto;
 import com.testboard.entity.ExamBoardDto;
 import com.testboard.entity.SingUpDto;
 
@@ -236,5 +237,34 @@ public class TestBoardDao {
 				e.printStackTrace();
 			}
 		
+	}
+
+	//댓글 목록가져오기
+	public ArrayList<CommentDto> getComment(int pid) {
+		
+		ArrayList<CommentDto> dtos = new ArrayList<>();
+		String sql = "select *from board_comment where comment_Pnum =?";
+		try {
+			 psmt = conn.prepareStatement(sql);
+			 psmt.setInt(1, pid);
+			 rs = psmt.executeQuery();
+			 if(rs.next()) {
+				int comment_num =rs.getInt("comment_num");
+				int comment_pnum=rs.getInt("comment_pnum");
+				String comment_userId=rs.getString("comment_userId");
+				String comment_content=rs.getString("comment_content");
+				Timestamp comment_date=rs.getTimestamp("comment_date"); 
+				int comment_parent=rs.getInt("comment_parent");
+		CommentDto dto = new CommentDto
+				(comment_num, comment_pnum, comment_userId, comment_content, comment_date, comment_parent);
+		dtos.add(dto);
+			 }
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return dtos;
 	}
 }

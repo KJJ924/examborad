@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +53,76 @@
                             </tbody>
                      </form>
                   </table>
-                 
+          <hr>
+          
+       
+        <table border="1" bordercolor="lightgray">
+    <!-- 댓글 목록 -->    
+   
+        <c:forEach var="comment" items="${commentdto}">
+        
+            <tr>
+                <!-- 아이디, 작성날짜 -->
+                <td width="150">
+                    <div>
+                        ${comment.comment_userId}<br>
+                        <font size="2" color="lightgray">${comment.comment_date}</font>
+                    </div>
+                </td>
+                <!-- 본문내용 -->
+                <td width="550">
+                    <div class="text_wrapper">
+                        ${comment.comment_content}
+                    </div>
+                </td>
+                <!-- 버튼 -->
+                <td width="100">
+                    <div id="btn" style="text-align:center;">
+                        <a href="#">[답변]</a><br>
+                    <!-- 댓글 작성자만 수정, 삭제 가능하도록 -->    
+                    <c:if test="${comment.comment_userId == UserID}">
+                        <a href="#">[수정]</a><br>    
+                        <a href="#">[삭제]</a>
+                    </c:if>        
+                    </div>
+                </td>
+            </tr>
+        </c:forEach>
+ 
+            
+          <%--   <!-- 로그인 했을 경우만 댓글 작성가능 -->
+            <c:if test="${sessionScope.sessionID !=null}">
+            <tr bgcolor="#F5F5F5">
+            <form id="writeCommentForm">
+                <input type="hidden" name="comment_board" value="${board.board_num}">
+                <input type="hidden" name="comment_id" value="${sessionScope.sessionID}">
+                <!-- 아이디-->
+                <td width="150">
+                    <div>
+                        ${sessionScope.sessionID}
+                    </div>
+                </td>
+                <!-- 본문 작성-->
+                <td width="550">
+                    <div>
+                        <textarea name="comment_content" rows="4" cols="70" ></textarea>
+                    </div>
+                </td>
+                <!-- 댓글 등록 버튼 -->
+                <td width="100">
+                    <div id="btn" style="text-align:center;">
+                        <p><a href="#" onclick="writeCmt()">[댓글등록]</a></p>    
+                    </div>
+                </td>
+            </form>
+            </tr>
+            </c:if> --%>
+    
+        </table>
+
+
+
+
                   
     <script src="js/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>

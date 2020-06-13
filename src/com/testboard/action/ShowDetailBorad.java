@@ -1,10 +1,13 @@
 package com.testboard.action;
 
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.testboard.dao.TestBoardDao;
+import com.testboard.entity.CommentDto;
 import com.testboard.entity.ExamBoardDto;
 
 public class ShowDetailBorad implements IAction {
@@ -14,10 +17,13 @@ public class ShowDetailBorad implements IAction {
 		int pid = Integer.parseInt(request.getParameter("id"));
 		System.out.println(pid);
 		TestBoardDao dao = new TestBoardDao();
+		ArrayList<CommentDto> commentdto = dao.getComment(pid); 
 		ExamBoardDto dto = dao.getDetail(pid);
+		
 		ActionForward forward = new ActionForward();
 		forward.setPath("/WEB-INF/DetailBoard.jsp");
 		request.setAttribute("dto", dto);
+		request.setAttribute("commentdto", commentdto);
 		
 		return forward;
 	}
