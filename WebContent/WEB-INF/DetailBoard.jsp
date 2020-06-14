@@ -43,9 +43,10 @@
               <tr>
               	<td colspan="4">
                       <div class="text-center">
-                  		
+                  		<c:if test="${UserID == dto.name}">
                   		<a class="btn btn-default pull-right " href="delete.do?id=${dto.id}">삭제</a>
                   		<input class="btn btn-default pull-right " type="submit" value="수정"></br>
+                  		</c:if>
                   		<a class="btn btn-default " href="board.do">목록</a>
                      </div>
                   </td>

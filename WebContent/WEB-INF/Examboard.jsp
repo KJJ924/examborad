@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,9 +33,12 @@
 	<c:forEach var="n" items="${list}">
 		<tr>
 				<td>${n.id}</td>
-				<td><a href="detail.do?id=${n.id}">${n.title}</a></td>
+				<td><a href="detail.do?id=${n.id}">${n.title}
+				<c:if test="${n.cmtCount!=0}">
+				<${n.cmtCount}>
+				</c:if></a></td>	
 				<td>${n.name}</td>
-				<td>${n.date}</td>
+				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${n.date}"/></td>
 				<td>${n.hit}</td>
 		</tr>
 	</c:forEach>

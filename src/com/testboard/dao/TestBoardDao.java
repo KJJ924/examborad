@@ -13,6 +13,7 @@ import java.util.List;
 import com.testboard.connection.DbConnection;
 import com.testboard.entity.CommentDto;
 import com.testboard.entity.ExamBoardDto;
+import com.testboard.entity.ExamListDto;
 import com.testboard.entity.SingUpDto;
 
 
@@ -33,9 +34,12 @@ public class TestBoardDao {
 		}
 	}
 	
-	public List<ExamBoardDto> getlist(){
-		List<ExamBoardDto> list = new ArrayList<ExamBoardDto>();
-		String sql = "select *From member ORDER by day DESC";
+	public List<ExamListDto> getlist(){
+		List<ExamListDto> list = new ArrayList<ExamListDto>();
+		String sql = "select M.ID , M.NAME , M.HIT ,m.title , m.day , COUNT(c.comment_pnum) comment_count "
+				+ "from member M LEFT JOIN board_comment C ON M.ID = c.comment_pnum "
+				+ "GROUP BY M.ID , M.NAME , M.HIT ,m.title , m.day "
+				+ "ORDER BY  m.day DESC";
 		
 			try {
 				smt=conn.createStatement();
@@ -46,9 +50,9 @@ public class TestBoardDao {
 					String title =rs.getString("title");
 					Timestamp date = rs.getTimestamp("day");
 					String hit =rs.getString("hit");
-					String content =rs.getString("content");
 					String name =rs.getString("name");
-					ExamBoardDto dto = new ExamBoardDto(id, title, date, hit, content, name);
+					String cmtcount=rs.getString("comment_count");
+					ExamListDto dto = new ExamListDto(id, title, date, hit, name,cmtcount);
 					list.add(dto);
 				}
 				
