@@ -1,5 +1,6 @@
 package com.testboard.command;
 
+import com.testboard.action.CommentInsert;
 import com.testboard.action.DeleteData;
 import com.testboard.action.IAction;
 import com.testboard.action.ModifyData;
@@ -43,6 +44,9 @@ public IAction getAction(String strAction) {
 		break;
 	case "/login.do": 
 		action= new login();
+		break;
+	case "/commentinsert.do": 
+		action= new CommentInsert();
 		break;
 		
 	}

@@ -60,7 +60,6 @@
     <!-- 댓글 목록 -->    
    
         <c:forEach var="comment" items="${commentdto}">
-        
             <tr>
                 <!-- 아이디, 작성날짜 -->
                 <td width="150">
@@ -81,8 +80,8 @@
                         <a href="#">[답변]</a><br>
                     <!-- 댓글 작성자만 수정, 삭제 가능하도록 -->    
                     <c:if test="${comment.comment_userId == UserID}">
-                        <a href="#">[수정]</a><br>    
-                        <a href="#">[삭제]</a>
+                        <a href="delete.do?commentid=${comment.comment_num}">[수정]</a><br>    
+                        <a href="delete.do?commentid=${comment.comment_num}">[삭제]</a>
                     </c:if>        
                     </div>
                 </td>
@@ -90,16 +89,16 @@
         </c:forEach>
  
             
-          <%--   <!-- 로그인 했을 경우만 댓글 작성가능 -->
-            <c:if test="${sessionScope.sessionID !=null}">
+        
+            <c:if test="${UserID!=null}">
             <tr bgcolor="#F5F5F5">
             <form id="writeCommentForm">
-                <input type="hidden" name="comment_board" value="${board.board_num}">
-                <input type="hidden" name="comment_id" value="${sessionScope.sessionID}">
+                <input type="hidden" name="comment_pnum" value="${dto.id}">
+                <input type="hidden" name="comment_userid" value="${UserID}">
                 <!-- 아이디-->
                 <td width="150">
                     <div>
-                        ${sessionScope.sessionID}
+                        ${UserID}
                     </div>
                 </td>
                 <!-- 본문 작성-->
@@ -116,10 +115,41 @@
                 </td>
             </form>
             </tr>
-            </c:if> --%>
+            </c:if> 
     
         </table>
+	<script type="text/javascript">
+		
+		function writeCmt() {
+			var form =document.getElementById("writeCommentForm");
+			
+			var board =form.comment_pnum.value
+			var id =form.comment_userid.value
+			var content =form.comment_content.value;
+			
+			if(!content)
+				{
+					alert("내용을입력해")
+					return false;
+				}
+			else{
+				
+				var param="comment_pnum="+board+"&comment_userid="+id+"&comment_content="+content;
+				console.log(param);
+				$.ajax({
+					url:"commentinsert.do",
+					data:param,
+					type:'post'
+				}).done(function(){
+					document.location.reload();
+				});
+			}
+			
+		}
+	
 
+
+	</script>
 
 
 
