@@ -242,10 +242,15 @@ public class TestBoardDao {
 				  id =rs.getString("id");
 				  pw =rs.getString("pw");
 			 }
-			 if(id.equals(userId) && pw.equals(userPw)) {
-				 check=1;
-			 }else
+			
+			 if(id==null) {
 				 check=0;
+			 }else if(id.equals(userId) && pw.equals(userPw)) { 
+				 check=1;
+			}else
+				 check=0;
+				 
+			 
 		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

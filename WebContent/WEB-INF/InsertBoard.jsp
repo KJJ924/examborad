@@ -26,10 +26,6 @@
                <td><input type="text" name="name"></td>
           </tr>
 		</c:if>
-		
-                          
-                        
-              
                         <tr>
                         	<th>내용</th>
                            <td colspan="4"><textarea name ="content" rows="10"></textarea></td>

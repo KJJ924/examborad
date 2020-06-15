@@ -24,9 +24,9 @@ public class WriteBorad implements IAction {
 		String name=request.getParameter("name");
 		String title=request.getParameter("title");
 	
-		if(name==null) {
+		if(name==null) 
 			name=(String) session.getAttribute("UserID");
-		}
+		
 		String content=request.getParameter("content");
 		TestBoardDao dao= new TestBoardDao();
 		dao.setInsert(name,title,content);
