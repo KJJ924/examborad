@@ -35,16 +35,29 @@ public class TestBoardDao {
 	}
 	
 	public List<ExamListDto> getlist(){
-		List<ExamListDto> list = new ArrayList<ExamListDto>();
-		String sql = "select M.ID , M.NAME , M.HIT ,m.title , m.day , COUNT(c.comment_pnum) comment_count "
-				+ "from member M LEFT JOIN board_comment C ON M.ID = c.comment_pnum "
-				+ "GROUP BY M.ID , M.NAME , M.HIT ,m.title , m.day "
-				+ "ORDER BY  m.day DESC";
 		
+		return getlist(0,"","title");
+		
+	}
+	
+    public List<ExamListDto> getlist(int page){
+		
+		return getlist(page,"","title");
+		
+	}
+	public List<ExamListDto> getlist(int page,String query ,String filed){
+		List<ExamListDto> list = new ArrayList<ExamListDto>();
+		String sql = "select *from"
+				+ "(select rownum num, m.* from "
+				+ "(select * from member_view where "+filed+" like ? order by day desc) m)"
+				+ "where num BETWEEN ? and ?";
+			
 			try {
-				smt=conn.createStatement();
-				rs=smt.executeQuery(sql);
-				
+			psmt=conn.prepareStatement(sql);
+			psmt.setString(1, "%"+query+"%");
+			psmt.setInt(2,1+(page-1)*10 );
+			psmt.setInt(3, page*10);
+			rs=psmt.executeQuery();
 				while(rs.next()) {
 					int id = rs.getInt("id");
 					String title =rs.getString("title");
@@ -61,8 +74,8 @@ public class TestBoardDao {
 				e.printStackTrace();
 			}finally {
 				try {
-					rs.close();
-					smt.close();
+					
+					psmt.close();
 					conn.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -75,6 +88,7 @@ public class TestBoardDao {
 		return list;
 		
 	}
+	
 
 	public ExamBoardDto getDetail(int pid) {
 		uphit(pid);

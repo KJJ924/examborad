@@ -13,6 +13,7 @@
 	<nav>
 		<c:choose>
 		<c:when test="${UserID!=null}">
+		<span><strong>${UserID} 님 어서오세요</strong></span>
 		<a class="btn btn-default pull-right"  href="logout.jsp">로그아웃</a>
 		</c:when>
 		<c:when test="${UserID==null || UserID==''}">
@@ -20,7 +21,19 @@
 		</c:when>
 		</c:choose>
 	</nav>
-
+			<div>
+				<form class="table-form">
+					<fieldset>
+						<select name="f">
+							<option ${param.f== "title"?"selected":""}value="title">제목</option>
+							<option ${param.f=="name"?"selected":""} value="name">작성자</option>
+						</select> 
+						<label class="hidden">검색어</label>
+						<input type="text" name="q" value="${param.q}"/>
+						<input class="btn btn-search" type="submit" value="검색" />
+					</fieldset>
+				</form>
+			</div>
 	<table class="table table-bordered table-hover" >
 	<thead>
 			<th>번호</th>

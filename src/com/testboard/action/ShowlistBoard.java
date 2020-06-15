@@ -14,8 +14,17 @@ public class ShowlistBoard implements IAction {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+		String filed = "title";
+		String filed_= request.getParameter("f");
+		if(filed_!=null)
+			filed=filed_;
+		
+		String query="";
+		String query_=request.getParameter("q");
+		if(query_!=null)
+			query=query_;
 		TestBoardDao dao = new TestBoardDao();
-		List<ExamListDto> list =  dao.getlist();
+		List<ExamListDto> list =  dao.getlist(1, query, filed);
 		ActionForward forward = new ActionForward();
 		forward.setPath("/WEB-INF/Examboard.jsp");
 		request.setAttribute("list", list);
