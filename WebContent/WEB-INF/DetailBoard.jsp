@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="container">
 	<table class="table table table-bordered ">
 		<form method="post" action="modify.jsp">
 		<input type="hidden" name="title" value="${dto.title}">
@@ -111,7 +112,7 @@
                 <!-- 댓글 등록 버튼 -->
                 <td width="100">
                     <div id="btn" style="text-align:center;">
-                        <p><a href="#" onclick="writeCmt()">[댓글등록]</a></p>    
+                        <p><a class="btn btn-default" onclick="writeCmt()">댓글등록</a></p>    
                     </div>
                 </td>
             </form>
@@ -119,6 +120,7 @@
             </c:if> 
     
         </table>
+        </div>
 	<script type="text/javascript">
 		
 		function writeCmt() {

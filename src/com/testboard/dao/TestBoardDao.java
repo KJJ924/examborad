@@ -72,18 +72,7 @@ public class TestBoardDao {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}finally {
-				try {
-					
-					psmt.close();
-					conn.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
 			}
-	
 		
 		return list;
 		
@@ -330,5 +319,37 @@ public class TestBoardDao {
 			}
 			
 		}
+	}
+
+	public int getCount(String filed, String query) {
+		String sql ="select count(*) count from"
+				+ "(select rownum num , m.* from "
+				+ "(select *from member_view where "+filed+" like ? order by day desc)m )";
+		int count =0;
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, "%"+query+"%");
+			rs= psmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				rs.close();
+				psmt.close();
+				conn.close();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+
+		
+		return count;
 	}
 }

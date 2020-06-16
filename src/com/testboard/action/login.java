@@ -29,7 +29,7 @@ public class login implements IAction {
 		}
 		
 		request.setAttribute("check", check);
-		
+		forward.setRedirect(true);
 		return forward;
 	}
 

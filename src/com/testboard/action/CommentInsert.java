@@ -23,8 +23,8 @@ public class CommentInsert implements IAction {
 		
 		ActionForward forward = new ActionForward();
 		//foraward 를 리턴 해줄필요 없는데  컨트롤러 분리안해서 해야됨 나중에  리턴 필요없는 insert나 삭제 수정같은경우 컨트롤러 따로 분리해서 만들것
-		forward.setPath("??");
-		
+		forward.setPath("detail.do?id="+pageNumber);
+		forward.setRedirect(false);
 		return forward;
 	}
 

@@ -31,9 +31,12 @@ public class ShowlistBoard implements IAction {
 		System.out.println(strNum);
 		TestBoardDao dao = new TestBoardDao();
 		List<ExamListDto> list =  dao.getlist(strNum, query, filed);
+		int count =dao.getCount(filed,query);
+		System.out.println("count:"+count);
 		ActionForward forward = new ActionForward();
 		forward.setPath("/WEB-INF/Examboard.jsp");
 		request.setAttribute("list", list);
+		request.setAttribute("count",count);
 		forward.setRedirect(true);
 		
 		return forward;
