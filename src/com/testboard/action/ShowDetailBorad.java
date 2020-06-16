@@ -22,6 +22,7 @@ public class ShowDetailBorad implements IAction {
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("/WEB-INF/DetailBoard.jsp");
+		forward.setRedirect(true);
 		request.setAttribute("dto", dto);
 		request.setAttribute("commentdto", commentdto);
 		

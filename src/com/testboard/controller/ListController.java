@@ -56,17 +56,20 @@ public class ListController extends HttpServlet {
 					
 					action = command.getAction(strAction);
 					
-					if(!strAction.equals("/insert.do")) {
+				
 					forward= action.execute(request, response);
 					path=forward.getPath();
-					}else {
-						path="/WEB-INF/InsertBoard.jsp";
+				
+		
+					if (forward.isRedirect()) {	
+						System.out.println("2번통과");
+						RequestDispatcher rd = request.getRequestDispatcher(path);
+						rd.forward(request, response);
+					} else {					
+					
+						System.out.println("1번통과");
+						response.sendRedirect(path);
 					}
-					
-					
-					RequestDispatcher rd = request.getRequestDispatcher(path);
-					rd.forward(request, response);
-					
 					
 	}
 }

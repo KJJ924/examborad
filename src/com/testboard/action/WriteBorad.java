@@ -31,7 +31,8 @@ public class WriteBorad implements IAction {
 		TestBoardDao dao= new TestBoardDao();
 		dao.setInsert(name,title,content);
 		ActionForward forward = new ActionForward();
-		forward.setPath("/board.do");
+		forward.setPath("board.do");
+		forward.setRedirect(false);
 		return forward;
 	}
 

@@ -2,6 +2,7 @@
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,7 +59,35 @@
 	</tbody>			
 	</table>
 	<hr>
-	<a class="btn btn-default pull-right"  href="insert.do">글쓰기</a>
+	<a class="btn btn-default pull-right"  href="InsertBoard.jsp">글쓰기</a>
+	
+	<c:set var="page" value="${(empty param.p)?1:param.p}"/>
+	<c:set var="startNum" value="${page-(page-1)%5}"/>
+	<c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/10),'.') }"/>
+	<div>
+	
+		<c:if test="${startNum-1>0}">
+	     	<a href="?p=${startNum-1}&t=&q=" class="btn btn-prev">이전</a>
+		</c:if>
+		<c:if test="${startNum-1<=1}">
+		 <span class="btn btn-prev" onclick="alert('이전 페이지가 없습니다.');">이전</span>
+		</c:if>
+	</div>
+
+	<ul>
+	<c:forEach var="i" begin="0" end="4">
+		<li><a href="?p=${i+startNum}&f=${param.f}&q=${param.q}">${i+startNum}</a></li>
+	</c:forEach>
+	</ul>
+	
+	<div>
+		<c:if test="${startNum+4 <lastNum}">
+			<a href="?p=${startNum+5}&f=${param.f}&q=${param.q}" class="btn btn-next">다음</a>
+		</c:if>
+		<c:if test="${startNum+4>=lastNum}">
+			<span class="btn btn-next" onclick="alert('다음 페이지가 없습니다.');">다음</span>
+		</c:if>
+	</div>
 	
 	<script src="js/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>

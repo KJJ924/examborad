@@ -29,9 +29,11 @@ public IAction getAction(String strAction) {
 		break;
 	case "/detail.do": 
 		action= new ShowDetailBorad();
+		
 		break;	
 	case "/write.do": 
 		action= new WriteBorad();
+		
 		break;
 	case "/delete.do": 
 		action= new DeleteData();

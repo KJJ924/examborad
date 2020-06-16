@@ -82,7 +82,7 @@
                     <!-- 댓글 작성자만 수정, 삭제 가능하도록 -->    
                     <c:if test="${comment.comment_userId == UserID}">
                         <a href="delete.do?commentid=${comment.comment_num}">[수정]</a><br>    
-                        <a href="delete.do?commentid=${comment.comment_num}">[삭제]</a>
+                        <a href="delete.do?commentid=${comment.comment_num}&pageNum=${dto.id}">[삭제]</a>
                     </c:if>        
                     </div>
                 </td>

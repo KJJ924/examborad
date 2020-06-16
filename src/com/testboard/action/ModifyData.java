@@ -27,7 +27,8 @@ public class ModifyData implements IAction {
 			
 			ActionForward forward = new ActionForward();
 			
-			forward.setPath("/detail.do?id="+pid);
+			forward.setPath("detail.do?id="+pid);
+			forward.setRedirect(false);
 		return forward;
 	}
 
