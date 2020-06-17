@@ -58,9 +58,13 @@ public class ListController extends HttpServlet {
 					
 				
 					forward= action.execute(request, response);
+					if(forward==null) {
+						System.out.println("끝");
+					}
+					if(forward!=null) {
 					path=forward.getPath();
 				
-		
+					
 					if (forward.isRedirect()) {	
 						System.out.println("2번통과");
 						RequestDispatcher rd = request.getRequestDispatcher(path);
@@ -70,6 +74,7 @@ public class ListController extends HttpServlet {
 						System.out.println("1번통과");
 						response.sendRedirect(path);
 					}
+				}
 					
 	}
 }

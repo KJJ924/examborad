@@ -82,15 +82,24 @@
                         <a href="#">[답변]</a><br>
                     <!-- 댓글 작성자만 수정, 삭제 가능하도록 -->    
                     <c:if test="${comment.comment_userId == UserID}">
-                        <a href="delete.do?commentid=${comment.comment_num}">[수정]</a><br>    
+                        <a href="#" onclick="modifyComment(${comment.comment_num})" >[수정]</a><br>    
                         <a href="delete.do?commentid=${comment.comment_num}&pageNum=${dto.id}">[삭제]</a>
                     </c:if>        
                     </div>
                 </td>
             </tr>
         </c:forEach>
- 
-            
+           <script>
+           	function modifyComment(comment_num) {
+           		console.log(comment_num);
+           		window.name="updatefrom";
+           		window.open("openCommnetForm.do?comment_num="+comment_num,"updateFrom",
+           				"width=570, height=350, resizable = no, scrollbars = no");
+
+           
+				
+			}
+           </script>
         
             <c:if test="${UserID!=null}">
             <tr bgcolor="#F5F5F5">

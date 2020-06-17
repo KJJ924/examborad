@@ -1,6 +1,8 @@
 package com.testboard.command;
 
 import com.testboard.action.CommentInsert;
+import com.testboard.action.CommnetSelect;
+import com.testboard.action.CommnetUpdate;
 import com.testboard.action.DeleteData;
 import com.testboard.action.IAction;
 import com.testboard.action.ModifyData;
@@ -49,6 +51,13 @@ public IAction getAction(String strAction) {
 		break;
 	case "/commentinsert.do": 
 		action= new CommentInsert();
+		break;
+	case "/openCommnetForm.do":
+		action =new CommnetSelect();
+		break;
+		
+	case "/commentupdate.do":
+		action =new CommnetUpdate();
 		break;
 		
 	}

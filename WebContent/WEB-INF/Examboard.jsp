@@ -57,8 +57,9 @@
 	</table>
 	</div>
 	<hr>
+	<c:if test="${UserID!=null}">
 	<a class="btn btn-default pull-right" href="InsertBoard.jsp">글쓰기</a>
-
+	</c:if>
 	<c:set var="page"     value="${(empty param.p)?1:param.p}" />
 	<c:set var="startNum" value="${page-(page-1)%5}" />
 	<c:set var="lastNum"  value="${fn:substringBefore(Math.ceil(count/10),'.') }" />

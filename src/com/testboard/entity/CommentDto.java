@@ -20,6 +20,11 @@ public class CommentDto {
 		this.comment_date = comment_date;
 		this.comment_parent = comment_parent;
 	}
+	public CommentDto(int comment_num, String comment_content, String comment_userId) {
+		this.comment_num = comment_num;
+		this.comment_content = comment_content;
+		this.comment_userId = comment_userId;
+	}
 	public int getComment_num() {
 		return comment_num;
 	}

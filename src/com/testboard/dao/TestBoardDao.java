@@ -352,4 +352,61 @@ public class TestBoardDao {
 		
 		return count;
 	}
+
+	public CommentDto selectComment(int comment_num) {
+			String sql = "select *from board_comment where comment_num=?";
+			CommentDto dto = null;
+			try {
+				psmt= conn.prepareStatement(sql);
+				psmt.setInt(1, comment_num);
+				rs= psmt.executeQuery();
+				
+				if(rs.next()) {
+					String comment_content = rs.getString("comment_content");
+					String comment_userId=rs.getString("comment_userid");
+				
+				 dto = new CommentDto(comment_num , comment_content ,comment_userId);
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				try {
+				rs.close();
+				psmt.close();
+				conn.close();
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+			}
+		
+		return dto;
+	}
+
+	public void updateComment(String comment_content, int comment_num) {
+		String sql = "update board_comment set comment_content=? where comment_num=?";
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, comment_content);
+			psmt.setInt(2, comment_num);
+			rs=psmt.executeQuery();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				rs.close();
+				psmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+	}
 }
