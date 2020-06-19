@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.testboard.dao.TestBoardDao;
 import com.testboard.entity.CommentDto;
-import com.testboard.entity.ExamBoardDto;
+import com.testboard.entity.ExamDetailDto;
 
 public class ShowDetailBorad implements IAction {
 
@@ -18,7 +18,7 @@ public class ShowDetailBorad implements IAction {
 		System.out.println(pid);
 		TestBoardDao dao = new TestBoardDao();
 		ArrayList<CommentDto> commentdto = dao.getComment(pid); 
-		ExamBoardDto dto = dao.getDetail(pid);
+		ExamDetailDto dto = dao.getDetail(pid);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("/WEB-INF/DetailBoard.jsp");

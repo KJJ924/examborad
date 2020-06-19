@@ -47,7 +47,15 @@
 			<c:forEach var="n" items="${list}">
 				<tr>
 					<td>${n.id}</td>
-					<td><a href="detail.do?id=${n.id}">${n.title} <c:if	test="${n.cmtCount!=0}">(${n.cmtCount})</c:if></a></td>
+					<td>
+					<c:forEach begin="1" end="${n.bIndent}" >
+					 <img src="img/reply-arrow.png" alt="화살표"width="10" height="10">
+					</c:forEach>
+					<a href="detail.do?id=${n.id}">
+					${n.title} 
+					<c:if test="${n.cmtCount!=0}">(${n.cmtCount})</c:if>
+					</a>
+					</td>
 					<td>${n.name}</td>
 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${n.date}" /></td>
 					<td>${n.hit}</td>

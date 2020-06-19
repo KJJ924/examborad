@@ -11,51 +11,69 @@
 </head>
 <body>
 <div class="container">
-	<table class="table table table-bordered ">
-		<form method="post" action="modify.jsp">
-		<input type="hidden" name="title" value="${dto.title}">
-		<input type="hidden" name="name" value="${dto.name}">
-		<input type="hidden" name="content" value="${dto.content}">
-		<input type="hidden" name="id" value="${dto.id}">
-          <tbody>
-                     <tr>
-                         <th>제목</th>
-                           <td class="text-align-left text-indent text-strong text-orange" colspan="3">${dto.title}</td>
-                        </tr>
-                        <tr>
-                           <th>작성일</th>
-                           <td class="text-align-left text-indent" colspan="3"><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${dto.date}"/></td>
-                        </tr>
-                        <tr>
-                           <th>작성자</th>
-                           <td>${dto.name}</td>
-                           <th>조회수</th>
-                           <td><fmt:formatNumber value="${dto.hit}"/></td>
-                        </tr>
-                        <tr>
-                           <th>첨부파일</th>
-                           <td colspan="3" style="text-align:left; text-indent:10px;">
- 
-                           </td>
-                        </tr>
-                        <tr class="content">
-                           <td colspan="4">${dto.content}</td>
-                        </tr>
-              <tr>
-              	<td colspan="4">
-                      <div class="text-center">
-                  		<c:if test="${UserID == dto.name}">
-                  		<a class="btn btn-default pull-right " href="delete.do?id=${dto.id}">삭제</a>
-                  		<input class="btn btn-default pull-right " type="submit" value="수정"></br>
-                  		</c:if>
-                  		<a class="btn btn-default " href="board.do">목록</a>
-                     </div>
-                  </td>
-              </tr>       
-                            </tbody>
-                     </form>
-                  </table>
-          <hr>
+		<table class="table table table-bordered ">
+			<form  method="post" action="modify.jsp">
+				<input type="hidden" name="title" value="${dto.title}"> 
+				<input type="hidden" name="name" value="${dto.name}">
+				<input type="hidden" name="content" value="${dto.content}">
+				<input type="hidden" name="id" value="${dto.id}"> 
+		
+				<tbody>
+					<tr>
+						<th>제목</th>
+						<td class="text-align-left text-indent text-strong text-orange"
+							colspan="3">${dto.title}</td>
+					</tr>
+					<tr>
+						<th>작성일</th>
+						<td class="text-align-left text-indent" colspan="3"><fmt:formatDate
+								pattern="yyyy-MM-dd hh:mm:ss" value="${dto.date}" /></td>
+					</tr>
+					<tr>
+						<th>작성자</th>
+						<td>${dto.name}</td>
+						<th>조회수</th>
+						<td><fmt:formatNumber value="${dto.hit}" /></td>
+					</tr>
+					<tr>
+						<th>첨부파일</th>
+						<td colspan="3" style="text-align: left; text-indent: 10px;">
+
+						</td>
+					</tr>
+					<tr class="content">
+						<td colspan="4">${dto.content}</td>
+					</tr>
+					<tr>
+						<td colspan="4">
+							<div class="text-center">
+								<c:if test="${UserID == dto.name}">
+									<a class="btn btn-default pull-right "
+										href="delete.do?id=${dto.id}">삭제</a>
+									<input class="btn btn-default pull-right " type="submit"
+										value="수정">
+									</form>
+									
+				<form method="post" action="replyPage.do">
+						<input type="hidden" name="bGroup" value="${dto.bGroup}">
+						<input type="hidden" name="bStep" value="${dto.bStep}">
+						<input type="hidden" name="bIndent" value="${dto.bIndent}">
+						<input class="btn btn-default pull-right" type="submit" value="답변달기">
+
+				</form>
+								</br>
+								</c:if>
+							
+			
+								<a class="btn btn-default " href="board.do">목록</a> 
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			
+				
+		</table>
+		<hr>
           
        
         <table border="1" bordercolor="lightgray">

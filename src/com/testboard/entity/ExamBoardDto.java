@@ -25,13 +25,15 @@ public class ExamBoardDto {
 
 
 
-	public ExamBoardDto(int id, String title, Timestamp date, String hit, String content,String name) {
+
+
+	public ExamBoardDto(int id, String title, Timestamp date, String hit, String content, String name) {
 		this.id = id;
 		this.title = title;
 		this.date = date;
 		this.hit = hit;
 		this.content = content;
-		this.name =name;
+		this.name = name;
 	}
 
 
@@ -83,6 +85,7 @@ public class ExamBoardDto {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+
 	
 }

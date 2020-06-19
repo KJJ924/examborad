@@ -6,6 +6,8 @@ import com.testboard.action.CommnetUpdate;
 import com.testboard.action.DeleteData;
 import com.testboard.action.IAction;
 import com.testboard.action.ModifyData;
+import com.testboard.action.Reply;
+import com.testboard.action.ReplyPage;
 import com.testboard.action.ShowDetailBorad;
 import com.testboard.action.ShowlistBoard;
 import com.testboard.action.WriteBorad;
@@ -59,6 +61,14 @@ public IAction getAction(String strAction) {
 	case "/commentupdate.do":
 		action =new CommnetUpdate();
 		break;
+	case "/replyPage.do":
+		action =new ReplyPage();
+		break;
+		
+	case "/reply.do":
+		action =new Reply();
+		break;
+		
 		
 	}
 	return action;

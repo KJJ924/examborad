@@ -13,6 +13,7 @@ import java.util.List;
 import com.testboard.connection.DbConnection;
 import com.testboard.entity.CommentDto;
 import com.testboard.entity.ExamBoardDto;
+import com.testboard.entity.ExamDetailDto;
 import com.testboard.entity.ExamListDto;
 import com.testboard.entity.SingUpDto;
 
@@ -49,7 +50,7 @@ public class TestBoardDao {
 		List<ExamListDto> list = new ArrayList<ExamListDto>();
 		String sql = "select *from"
 				+ "(select rownum num, m.* from "
-				+ "(select * from member_view where "+filed+" like ? order by day desc) m)"
+				+ "(select * from member_view2 where "+filed+" like ? order by bGroup desc, bStep asc ,day desc) m)"
 				+ "where num BETWEEN ? and ?";
 			
 			try {
@@ -65,7 +66,8 @@ public class TestBoardDao {
 					String hit =rs.getString("hit");
 					String name =rs.getString("name");
 					String cmtcount=rs.getString("comment_count");
-					ExamListDto dto = new ExamListDto(id, title, date, hit, name,cmtcount);
+					int bIndent = rs.getInt("bIndent");
+					ExamListDto dto = new ExamListDto(id, title, date, hit, name,cmtcount ,bIndent);
 					list.add(dto);
 				}
 				
@@ -79,9 +81,9 @@ public class TestBoardDao {
 	}
 	
 
-	public ExamBoardDto getDetail(int pid) {
+	public ExamDetailDto getDetail(int pid) {
 		uphit(pid);
-		ExamBoardDto dto= null;
+		ExamDetailDto dto= null;
 		String sql = "select *from member where id=?";
 		try {
 			 psmt = conn.prepareStatement(sql);
@@ -96,7 +98,10 @@ public class TestBoardDao {
 				String hit =rs.getString("hit");
 				String content =rs.getString("content");
 				String name =rs.getString("name");
-				 dto = new ExamBoardDto(id, title, date, hit, content, name);
+				int bGroup = rs.getInt("bGroup");
+				int bStep= rs.getInt("bStep");
+				int bIndent=rs.getInt("bIndent");
+				 dto = new ExamDetailDto(id, title, date, hit, content, name,bGroup, bStep, bIndent);
 			}
 			
 		} catch (SQLException e) {
@@ -131,7 +136,7 @@ public class TestBoardDao {
 
 	public void setInsert(String name, String title, String content) {
 		              //insert into member VALUES(BOARDID.NEXTVAL,'제목',sysdate,0,'내용','이름');
-		String sql = "insert into member VALUES(BOARDID.NEXTVAL,?,sysdate,0,?,?)";
+		String sql = "insert into member VALUES(BOARDID.NEXTVAL ,? , sysdate, 0, ?, ?, BOARDID.NEXTVAL, 0 ,0 )";
 		try {
 			 psmt = conn.prepareStatement(sql);
 			 psmt.setString(1, title);
@@ -165,7 +170,7 @@ public class TestBoardDao {
 		}else {
 			 sql = "DELETE member where id=?";
 		}
-		System.out.println(sql);
+
 		try {
 			 psmt = conn.prepareStatement(sql);
 			 if(pid==null || pid.equals("")) {
@@ -409,4 +414,58 @@ public class TestBoardDao {
 		}
 		
 	}
+
+	public void reply(String name, String title, String content, int bGroup, int bStep, int bIndent) {
+		// TODO Auto-generated method stub
+		String sql ="insert into member VALUES(BOARDID.NEXTVAL ,? , sysdate, 0, ?, ?, ?, ? ,? )";
+		replyShape(bGroup,bStep);
+		try {
+			 psmt = conn.prepareStatement(sql);
+			 psmt.setString(1, title);
+			 psmt.setString(2,content);
+			 psmt.setString(3, name);
+			 psmt.setInt(4, bGroup);
+			 psmt.setInt(5, bStep+1);
+			 psmt.setInt(6, bIndent+1);
+			 
+			 psmt.executeQuery();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				
+				psmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+	}
+
+	private void replyShape(int bGroup, int bStep) {
+		// TODO Auto-generated method stub
+		String sql ="update member set bStep=bStep+1 where bGroup=? and bStep >?";
+		try {
+			psmt=conn.prepareStatement(sql);
+			psmt.setInt(1, bGroup);
+			psmt.setInt(2, bStep);
+			psmt.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		
+	}
+
+	
+	
+
+	
 }
