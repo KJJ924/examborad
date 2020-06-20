@@ -80,10 +80,15 @@
     <!-- 댓글 목록 -->    
    
         <c:forEach var="comment" items="${commentdto}">
+        <form id=commentReply>
+        	<input type="hidden" name="comment_num" value="${comment.comment_num}">
+        	<input type="hidden" name="comment_pnum" value="${dto.id}">
+        </form>
             <tr>
                 <!-- 아이디, 작성날짜 -->
                 <td width="150">
                     <div>
+                    <c:forEach begin="1" end="${comment.comment_indent}"><img src="img/reply-arrow.png" alt="화살표"width="10" height="10"></c:forEach>
                         ${comment.comment_userId}<br>
                         <font size="2" color="lightgray">${comment.comment_date}</font>
                     </div>
@@ -97,7 +102,7 @@
                 <!-- 버튼 -->
                 <td width="100">
                     <div id="btn" style="text-align:center;">
-                        <a href="#">[답변]</a><br>
+                        <a href="#" onclick="commentReply(${comment.comment_num})">[답변]</a><br>
                     <!-- 댓글 작성자만 수정, 삭제 가능하도록 -->    
                     <c:if test="${comment.comment_userId == UserID}">
                         <a href="#" onclick="modifyComment(${comment.comment_num})" >[수정]</a><br>    
@@ -108,6 +113,18 @@
             </tr>
         </c:forEach>
            <script>
+           function commentReply(comment_num) {
+        		var form =document.getElementById("commentReply");
+    			
+    	
+    			console.log(comment_num)
+
+        	   
+          		window.name="updatefrom";
+          		window.open("openCommnetReplyForm.do?comment_num="+comment_num,"updateFrom",
+          				"width=570, height=350, resizable = no, scrollbars = no");
+			
+		}
            	function modifyComment(comment_num) {
            		console.log(comment_num);
            		window.name="updatefrom";

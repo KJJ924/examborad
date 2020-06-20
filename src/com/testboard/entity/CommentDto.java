@@ -8,22 +8,30 @@ public class CommentDto {
 	private String comment_userId;
 	private String comment_content;
 	private Timestamp comment_date;
-	private int comment_parent;
+	private int comment_group;
+	private int comment_step;
+	private int comment_indent;
 	
 	
 	public CommentDto(int comment_num, int comment_pnum, String comment_userId, String comment_content,
-			Timestamp comment_date, int comment_parent) {
+			Timestamp comment_date, int comment_indent) {
 		this.comment_num = comment_num;
 		this.comment_pnum = comment_pnum;
 		this.comment_userId = comment_userId;
 		this.comment_content = comment_content;
 		this.comment_date = comment_date;
-		this.comment_parent = comment_parent;
+		this.comment_indent = comment_indent;
 	}
-	public CommentDto(int comment_num, String comment_content, String comment_userId) {
+	
+	public CommentDto(int comment_num, String comment_content, String comment_userId, int comment_group,
+			int comment_step, int comment_indent, int comment_pnum) {
 		this.comment_num = comment_num;
 		this.comment_content = comment_content;
 		this.comment_userId = comment_userId;
+		this.comment_group = comment_group;
+		this.comment_step = comment_step;
+		this.comment_indent = comment_indent;
+		this.comment_pnum = comment_pnum;
 	}
 	public int getComment_num() {
 		return comment_num;
@@ -55,11 +63,24 @@ public class CommentDto {
 	public void setComment_date(Timestamp comment_date) {
 		this.comment_date = comment_date;
 	}
-	public int getComment_parent() {
-		return comment_parent;
+
+	public int getComment_group() {
+		return comment_group;
 	}
-	public void setComment_parent(int comment_parent) {
-		this.comment_parent = comment_parent;
+	public void setComment_group(int comment_group) {
+		this.comment_group = comment_group;
+	}
+	public int getComment_step() {
+		return comment_step;
+	}
+	public void setComment_step(int comment_step) {
+		this.comment_step = comment_step;
+	}
+	public int getComment_indent() {
+		return comment_indent;
+	}
+	public void setComment_indent(int comment_indent) {
+		this.comment_indent = comment_indent;
 	}
 	
 }

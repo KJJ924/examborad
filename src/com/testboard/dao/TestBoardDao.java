@@ -274,7 +274,7 @@ public class TestBoardDao {
 	public ArrayList<CommentDto> getComment(int pid) {
 		
 		ArrayList<CommentDto> dtos = new ArrayList<>();
-		String sql = "select *from board_comment where comment_Pnum =? order by comment_date asc";
+		String sql = "select *from board_comment where comment_Pnum =? order by comment_group desc, comment_step asc,comment_date asc";
 		try {
 			 psmt = conn.prepareStatement(sql);
 			 psmt.setInt(1, pid);
@@ -285,9 +285,9 @@ public class TestBoardDao {
 				String comment_userId=rs.getString("comment_userId");
 				String comment_content=rs.getString("comment_content");
 				Timestamp comment_date=rs.getTimestamp("comment_date"); 
-				int comment_parent=rs.getInt("comment_parent");
+				int comment_indent=rs.getInt("comment_indent");
 		CommentDto dto = new CommentDto
-				(comment_num, comment_pnum, comment_userId, comment_content, comment_date, comment_parent);
+				(comment_num, comment_pnum, comment_userId, comment_content, comment_date, comment_indent);
 		dtos.add(dto);
 			 }
 		
@@ -301,7 +301,7 @@ public class TestBoardDao {
 	//댓글추가
 	public void insertCommnet(String pageNumber, String userid, String content) {
 		
-		String sql = "insert into board_comment VALUES(COMMENT_SEQ.NEXTVAL,?,?,?,sysdate,0)";
+		String sql = "insert into board_comment VALUES(COMMENT_SEQ.NEXTVAL,?,?,?,sysdate,COMMENT_SEQ.NEXTVAL,0,0)";
 		try {
 			 psmt = conn.prepareStatement(sql);
 			 psmt.setString(1,pageNumber);
@@ -369,8 +369,12 @@ public class TestBoardDao {
 				if(rs.next()) {
 					String comment_content = rs.getString("comment_content");
 					String comment_userId=rs.getString("comment_userid");
+					int comment_group = rs.getInt("comment_group");
+					int comment_step =rs.getInt("comment_step");
+					int comment_indent=rs.getInt("comment_indent");
+					int comment_pnum=rs.getInt("comment_pnum");
 				
-				 dto = new CommentDto(comment_num , comment_content ,comment_userId);
+				 dto = new CommentDto(comment_num , comment_content ,comment_userId,comment_group,comment_step,comment_indent,comment_pnum);
 				}
 				
 			} catch (SQLException e) {
@@ -464,6 +468,52 @@ public class TestBoardDao {
 		
 	}
 
+	public void commentReply(String content, int comment_pnum, int comment_group, int comment_step,
+			int comment_indent, String userID) {
+		
+		replyCommentShape(comment_group, comment_step);
+		String sql = "insert into board_comment VALUES(COMMENT_SEQ.NEXTVAL,?,?,?,sysdate,?,?,?)";
+		try {
+			 psmt = conn.prepareStatement(sql);
+			 psmt.setInt(1,comment_pnum);
+			 psmt.setString(2,userID);
+			 psmt.setString(3, content);
+			 psmt.setInt(4, comment_group);
+			 psmt.setInt(5, comment_step+1);
+			 psmt.setInt(6, comment_indent+1);
+			 psmt.executeQuery();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				
+				psmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+	}
+	private void replyCommentShape(int comment_group, int comment_step) {
+		// TODO Auto-generated method stub
+		String sql ="update board_comment set comment_step=comment_step+1 where comment_group=? and comment_step >?";
+		try {
+			psmt=conn.prepareStatement(sql);
+			psmt.setInt(1, comment_group);
+			psmt.setInt(2, comment_step);
+			psmt.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		
+	}
 	
 	
 

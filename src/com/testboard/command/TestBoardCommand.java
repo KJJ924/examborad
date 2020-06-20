@@ -11,7 +11,9 @@ import com.testboard.action.ReplyPage;
 import com.testboard.action.ShowDetailBorad;
 import com.testboard.action.ShowlistBoard;
 import com.testboard.action.WriteBorad;
+import com.testboard.action.CommentReply;
 import com.testboard.action.login;
+import com.testboard.action.openCommnetReplyForm;
 import com.testboard.action.singup;
 
 public class TestBoardCommand {
@@ -68,7 +70,13 @@ public IAction getAction(String strAction) {
 	case "/reply.do":
 		action =new Reply();
 		break;
+	case "/openCommnetReplyForm.do":
+		action =new openCommnetReplyForm();
+		break;
 		
+	case "/commentreply.do":
+		action =new CommentReply();
+		break;
 		
 	}
 	return action;
