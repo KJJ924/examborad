@@ -12,8 +12,8 @@ public class ExamDetailDto extends ExamBoardDto {
 	}
 
 	public ExamDetailDto(int id, String title, Timestamp date, String hit, String content, String name, int bGroup,
-			int bStep, int bIndent) {
-		super(id, title, date, hit, content, name);
+			int bStep, int bIndent ,String fileName ,String ufilename) {
+		super(id, title, date, hit, content, name ,fileName,ufilename);
 		this.bGroup=bGroup;
 		this.bStep=bStep;
 		this.bIndent=bIndent;

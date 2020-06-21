@@ -10,7 +10,7 @@
 </head>
 <body>
 		<table class="table table table-bordered ">
-          	<form action="write.do" method="post">
+          	<form action="write.do" method="post" enctype="multipart/form-data">
                         <tr>
                          <th>제목</th>
                            <td class="text-align-left text-indent text-strong text-orange" colspan="3">
@@ -26,6 +26,10 @@
                <td><input type="text" name="name"></td>
           </tr>
 		</c:if>
+			<tr>
+			<th>첨부파일</th>
+			<td><input type="file" name ="file"multiple></td>
+			</tr>
                         <tr>
                         	<th>내용</th>
                            <td colspan="4"><textarea name ="content" rows="10"></textarea></td>

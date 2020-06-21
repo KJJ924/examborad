@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,13 +23,13 @@
 				<tbody>
 					<tr>
 						<th>제목</th>
-						<td class="text-align-left text-indent text-strong text-orange"
-							colspan="3">${dto.title}</td>
+						<td colspan="3">${dto.title}
+</td>
 					</tr>
 					<tr>
 						<th>작성일</th>
-						<td class="text-align-left text-indent" colspan="3"><fmt:formatDate
-								pattern="yyyy-MM-dd hh:mm:ss" value="${dto.date}" /></td>
+						<td class="text-align-left text-indent" colspan="3">
+						<fmt:formatDate	pattern="yyyy-MM-dd hh:mm:ss" value="${dto.date}" /></td>
 					</tr>
 					<tr>
 						<th>작성자</th>
@@ -38,7 +40,14 @@
 					<tr>
 						<th>첨부파일</th>
 						<td colspan="3" style="text-align: left; text-indent: 10px;">
-
+							<c:forTokens  var="fileName" items="${dto.ufileName}" delims="," varStatus="st">
+							<c:set var="test" value="${fileName}"/>
+								<a href="/examboard/upload/${fileName}" download="${fn:substring(test,36,fn:length(test)) }" >${fn:substring(test,36,fn:length(test)) }</a>
+								<c:if test="${!st.last}">
+								/
+								</c:if>
+							</c:forTokens>
+						
 						</td>
 					</tr>
 					<tr class="content">

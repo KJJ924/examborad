@@ -101,7 +101,9 @@ public class TestBoardDao {
 				int bGroup = rs.getInt("bGroup");
 				int bStep= rs.getInt("bStep");
 				int bIndent=rs.getInt("bIndent");
-				 dto = new ExamDetailDto(id, title, date, hit, content, name,bGroup, bStep, bIndent);
+				String fileName= rs.getString("filename");
+				String ufileName =rs.getString("ufilename");
+				 dto = new ExamDetailDto(id, title, date, hit, content, name,bGroup, bStep, bIndent,fileName,ufileName);
 			}
 			
 		} catch (SQLException e) {
@@ -134,17 +136,18 @@ public class TestBoardDao {
 		
 	}
 
-	public void setInsert(String name, String title, String content) {
+	public void setInsert(String name, String title, String content, String fileName,String uFileName) {
 		              //insert into member VALUES(BOARDID.NEXTVAL,'제목',sysdate,0,'내용','이름');
-		String sql = "insert into member VALUES(BOARDID.NEXTVAL ,? , sysdate, 0, ?, ?, BOARDID.NEXTVAL, 0 ,0 )";
+		String sql = "insert into member VALUES(BOARDID.NEXTVAL ,? , sysdate, 0, ?, ?, BOARDID.NEXTVAL, 0 ,0 ,?,?)";
 		try {
 			 psmt = conn.prepareStatement(sql);
 			 psmt.setString(1, title);
 			 psmt.setString(2,content);
 			 psmt.setString(3, name);
+			 psmt.setString(4, fileName);
+			 psmt.setString(5,uFileName);
 			 psmt.executeQuery();
-			
-			
+		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

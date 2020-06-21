@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,10 @@ import com.testboard.command.TestBoardCommand;
 /**
  * Servlet implementation class ListController
  */
+@MultipartConfig(
+		fileSizeThreshold=1024*1024,
+		maxFileSize = 1024*1024*50,
+		maxRequestSize =1024*1024*50*5)
 @WebServlet("*.do")
 public class ListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;

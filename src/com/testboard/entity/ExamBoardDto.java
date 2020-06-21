@@ -9,6 +9,8 @@ public class ExamBoardDto {
 	private String hit;
 	private String content;
 	private String name;
+	private String fileName;
+	private String ufileName;
 
 
 	public ExamBoardDto() {
@@ -27,13 +29,15 @@ public class ExamBoardDto {
 
 
 
-	public ExamBoardDto(int id, String title, Timestamp date, String hit, String content, String name) {
+	public ExamBoardDto(int id, String title, Timestamp date, String hit, String content, String name,String fileName ,String ufilename) {
 		this.id = id;
 		this.title = title;
 		this.date = date;
 		this.hit = hit;
 		this.content = content;
 		this.name = name;
+		this.fileName= fileName;
+		this.ufileName=ufilename;
 	}
 
 
@@ -84,6 +88,30 @@ public class ExamBoardDto {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+
+
+	public String getFileName() {
+		return fileName;
+	}
+
+
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+
+
+	public String getUfileName() {
+		return ufileName;
+	}
+
+
+
+	public void setUfileName(String ufileName) {
+		this.ufileName = ufileName;
 	}
 
 

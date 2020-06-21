@@ -10,7 +10,7 @@ public class ExamListDto extends ExamBoardDto {
 		// TODO Auto-generated constructor stub
 	}
 	public ExamListDto(int id, String title, Timestamp date, String hit, String name, String cmtcount, int bIndent ) {
-		super(id, title, date, hit, "", name);
+		super(id, title, date, hit, "", name,"","");
 		this.cmtCount =cmtcount;
 		this.bIndent= bIndent;
 	}
