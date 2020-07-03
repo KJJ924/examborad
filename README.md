@@ -1,5 +1,11 @@
 mvc 패턴으로 배운 jsp 게시판 을 공부하기위해서 만든 예제 입니다.
 
+![1](https://user-images.githubusercontent.com/64793712/86487454-1947c000-bd99-11ea-998d-bc36b766fb74.PNG)
+기본 페이지
+
+![2](https://user-images.githubusercontent.com/64793712/86487480-2c5a9000-bd99-11ea-9246-caa0fd2457bb.PNG)
+자세한 페이지
+
 
 
 -committed 2020-06-19-
